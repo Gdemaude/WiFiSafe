@@ -1,5 +1,6 @@
 # WiFiSafe
-Small utility software conceived to share WiFi connections between computers. 
+Small utility software conceived to share WiFi connections between computers.
+As the software is intented to be used on a USB drive, the WiFi profiles (the files that store the connections information) are encrypted to avoid revealing sensitive information in case the device is lost.
 
 # Usage
 Place this program on a USB device. 
