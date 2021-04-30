@@ -1,18 +1,17 @@
 # -*- coding: utf-8 -*-
-import subprocess
 import os
-import sys
-import glob
-import re
 from PyInquirer import prompt
 from time import sleep
-import hashlib, binascii
-from Crypto.Protocol.KDF import scrypt
-import json
-from base64 import b64encode
-from Crypto.Cipher import AES
 from wifi import Wifi
 from encrypt import Encrypt
+import pyuac as admin
+
+#needed for getting WiFi keys
+
+if not admin.isUserAdmin():
+    print("Admin rights required for getting WPA keys")
+    admin.runAsAdmin()
+    exit()
 
 if __name__ == '__main__':
     print("Welcome to WiFiSafe!")

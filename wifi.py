@@ -26,7 +26,7 @@ class Wifi:
         folder = 'folder=' + self.folder
         #profiles = [i.split(":")[1][1:-1] for i in data if "Profil Tous les utilisateurs" in i or "All User Profile" in i]
         try:
-            subprocess.check_output(['netsh', 'wlan', 'export', 'profile', folder])  # netsh bug if there is a # in the name of the profile
+            subprocess.check_output(['netsh', 'wlan', 'export', 'profile', folder, 'key=clear'])  # netsh bug if there is a # in the name of the profile, need adminstrative right
         except Exception as e:
             print("Error when exporting WiFi profiles")
             print(e)
