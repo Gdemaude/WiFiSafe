@@ -4,8 +4,8 @@ As the software is intended to be used on a USB drive, the WiFi profiles (the fi
 
 # Usage
 Place this program on a USB device. 
-Run it and choose Export profiles (or Synchronise profiles). Exit program and Remove USB device.
-Plug the USB device into another computer, run it and choose Import profiles (or Synchronise profiles). 
+Run it, you will be asked to set up a new password. Once it is done, choose Export profiles (or Synchronise profiles). Exit program and Remove USB device.
+Plug the USB device into another computer, run it, enter the right password and choose Import profiles (or Synchronise profiles). 
 You have successfully shared the password-protected WiFi connections from the first computer into the second one.
 
 Warning: might override previous WiFi profiles if used improperly. 
