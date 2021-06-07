@@ -11,6 +11,8 @@ import pyuac as admin
 if not admin.isUserAdmin():
     print("Admin rights required for getting WPA keys")
     admin.runAsAdmin()
+    W=Wifi()
+    W.remove_clear_profiles()#emergency cleanup
     exit()
 
 if __name__ == '__main__':
@@ -95,7 +97,7 @@ if __name__ == '__main__':
                 elif len(epsw) >= 6:
                     psw = epsw
                     W.remove_clear_profiles()
-                    E.remove_crypted_profiles()
+                    E.remove_crypted_files()
                     print("Old connections deleted")
                     hashd = E.create_password(psw)
                     print("New password set \n")
@@ -137,22 +139,22 @@ if __name__ == '__main__':
             print("Exporting profiles...")
             W.export_profiles()
             W.remove_irrelevant_profiles()
-            E.encrypt_profiles(W.folder)
+            E.encrypt_files(W.folder)
             W.remove_clear_profiles()
             print("Profiles exported successfully \n")
         elif ans == "Import WiFi profiles":
             print("Importing profiles...")
-            E.decrypt_profiles(W.folder)
+            E.decrypt_files(W.folder)
             W.create_profiles()
             W.remove_clear_profiles()
             print("Profiles Imported successfully \n")
         elif ans == "Synchronise profiles":
             print("Synchronising...")
-            E.decrypt_profiles(W.folder)
+            E.decrypt_files(W.folder)
             W.export_profiles()
             W.remove_irrelevant_profiles()
             W.create_profiles()
-            E.encrypt_profiles(W.folder)
+            E.encrypt_files(W.folder)
             W.remove_clear_profiles()
             print("Synchronisation completed")
         elif ans== "Help":

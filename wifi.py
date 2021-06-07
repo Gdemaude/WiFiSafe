@@ -10,16 +10,23 @@ class Wifi:
             os.mkdir(folder)
 
     def create_profiles(self):
-        data = subprocess.check_output(['netsh', 'wlan', 'show', 'profiles']).decode('utf-8',errors="backslashreplace").split('\n')
-        profiles = [i.split(":")[1][1:-1] for i in data if "Profil Tous les utilisateurs" in i or "All User Profile" in i]
+        try:
+            data = subprocess.check_output(['netsh', 'wlan', 'show', 'profiles']).decode('utf-8',errors="backslashreplace").split('\n')
+            profiles = [i.split(":")[1][1:-1] for i in data if "Profil Tous les utilisateurs" in i or "All User Profile" in i]
+        except subprocess.CalledProcessError as inst:
+            print("No existing profiles stored within the computer")
+            profiles=[]
         for f in glob.glob(self.folder+"\\*.xml"):
-            file = open(f)
-            txt = file.read()
-            res = re.findall("<name>(.*?)</name>", txt)
-            if res[0] in profiles:
-                continue
-            filename = "filename=" + f
-            result = subprocess.check_output(['netsh', 'wlan', 'add', 'profile', filename])
+            try:
+                file = open(f)
+                txt = file.read()
+                res = re.findall("<name>(.*?)</name>", txt)
+                if res[0] in profiles:
+                    continue
+                filename = "filename=" + f
+                result = subprocess.check_output(['netsh', 'wlan', 'add', 'profile', filename])
+            except Exception as inst:
+                print(inst)
 
 
     def export_profiles(self):

@@ -19,8 +19,6 @@ class Encrypt:
         hashd=self.hash_password(password)
         written = hashd[:160]  # hash used for authentification
         self.key = hashd[160:]  # key used for encryption
-        self.psw=password
-        self.cipher = AES.new(self.key.encode("ascii"), AES.MODE_CTR)
         f.write(written)
         f.close()
     def hash_password(self,password):
@@ -51,7 +49,7 @@ class Encrypt:
         else:
             return False
 
-    def decrypt_profiles(self, destinationf):
+    def decrypt_files(self, destinationf):
         for f in glob.glob(self.folder + "\\*.enc"):
             file=open(f, 'r')
             dump=file.read()
@@ -66,8 +64,8 @@ class Encrypt:
             with open(destinationf+"\\"+name+".xml", 'w') as outfile:
                 outfile.write(pt)
 
-    def encrypt_profiles(self, sourcef):
-        for f in glob.glob(sourcef+ "\\*.xml"):
+    def encrypt_files(self, sourcef, form="\\*.xml"):
+        for f in glob.glob(sourcef+ form):
             file = open(f)
             txt = file.read()
             file.close()
@@ -79,6 +77,6 @@ class Encrypt:
             with open(self.folder+"\\"+name+".enc", 'w') as outfile:
                 json.dump({'nonce':nonce, 'ciphertext':ct}, outfile)
 
-    def remove_crypted_profiles(self):
+    def remove_crypted_files(self):
         for f in glob.glob(self.folder + "\\*.enc"):
             os.remove(f)
