@@ -13,4 +13,4 @@ Warning: might override previous WiFi profiles if used improperly.
 Warning: the software will create two folders, "profiles" and "temp", do not remove those folders during use. The encrypted data will be stored within the profiles folder.
 
 # Requirements
-This program works on Windows (tested on Windows 10) and the language of the OS must be either French or English.
+This program works on Windows (tested on Windows 10) and the language of the OS must either be French or English.
