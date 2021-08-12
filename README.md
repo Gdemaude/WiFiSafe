@@ -14,3 +14,9 @@ Warning: the software will create two folders, "profiles" and "temp", do not rem
 
 # Requirements
 This program works on Windows (tested on Windows 10) and the language of the OS must either be French or English.
+
+# Warning
+
+Windows defender flags this program with 2 known malwares, Wacatac.B!ml and Tilevn.a, this is probably due to the fact that this software uses encryption to store the WiFi info securely and it needs elevated access to get this information from the system.
+
+In order to use it, you might need to add it to the exclusion list.
